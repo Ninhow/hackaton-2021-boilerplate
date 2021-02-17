@@ -36,7 +36,7 @@
       "projectType": "application",
       "root": "apps/hackaton-application",
       "sourceRoot": "apps/hackaton-application/src",
-      "prefix": "hackaton2021",
+      "prefix": "",
       "architect": {
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
@@ -51,7 +51,10 @@
               "apps/hackaton-application/src/favicon.ico",
               "apps/hackaton-application/src/assets"
             ],
-            "styles": ["./node_modules/@angular/material/prebuilt-themes/deeppurple-amber.css", "apps/hackaton-application/src/styles.scss"],
+            "styles": [
+              "./node_modules/@angular/material/prebuilt-themes/deeppurple-amber.css",
+              "apps/hackaton-application/src/styles.scss"
+            ],
             "scripts": []
           },
           "configurations": {
