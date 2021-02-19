@@ -1,0 +1,17 @@
+.big-height {
+  height: 100vh;
+}
+.avatar {
+  height: 150px;
+  width: 150px;
+  border: solid 1px blue;
+  border-radius: 100px;
+  margin: 0 auto;
+  margin-bottom: 20px;
+}
+::ng-deep .mat-simple-snackbar-action {
+  color: red;
+}
+.align--center {
+  text-align: center;
+}
