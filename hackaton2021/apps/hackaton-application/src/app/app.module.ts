@@ -25,11 +25,15 @@ import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { ServiceWorkerModule } from '@angular/service-worker';
 import { environment } from '../environments/environment';
 
-const redirectUnauthorizedToLogin = () => redirectUnauthorizedTo(['login']);
-const redirectLoggedInToDashboard = () => redirectLoggedInTo(['dashboard']);
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatDividerModule } from '@angular/material/divider';
 import { MatListModule } from '@angular/material/list';
+
+import { MatButtonToggleModule } from '@angular/material/button-toggle';
+import { FeedComponent } from './feed/feed.component';
+import { MatChipsModule } from '@angular/material/chips';
+const redirectUnauthorizedToLogin = () => redirectUnauthorizedTo(['login']);
+const redirectLoggedInToDashboard = () => redirectLoggedInTo(['dashboard']);
 const appRoutes: Routes = [
   {
     path: '',
@@ -49,8 +53,9 @@ const appRoutes: Routes = [
     data: { authGuardPipe: redirectUnauthorizedToLogin },
   },
 ];
+
 @NgModule({
-  declarations: [AppComponent, LoginComponent, DashboardComponent],
+  declarations: [AppComponent, FeedComponent],
   imports: [
     MatDividerModule,
     BrowserModule,
@@ -84,6 +89,9 @@ const appRoutes: Routes = [
     ServiceWorkerModule.register('ngsw-worker.js', {
       enabled: environment.production,
     }),
+    MatButtonToggleModule,
+    MatCardModule,
+    MatChipsModule,
   ],
   providers: [],
   bootstrap: [AppComponent],
