@@ -1,0 +1,71 @@
+<mat-sidenav-container
+  class="example-container"
+  (backdropClick)="close('backdrop')"
+  style="height: 100vh"
+>
+  <mat-sidenav
+    style="background-color: #00d4ff"
+    class="navWidth"
+    #sidenav
+    (keydown.escape)="close('escape')"
+    disableClose
+    mode="{{ openMode }}"
+    hasBackdrop="false"
+    [opened]="innerWidth > 1000"
+  >
+    <div class="d-flex justify-content-center pt-5">
+      <div class="centered">
+        <img src="../../assets/theyer.png" alt="" class="avatar-nav" />
+        <h3 style="text-align: center">MY_NAME</h3>
+      </div>
+    </div>
+
+    <mat-nav-list>
+      <a
+        mat-list-item
+        *ngFor="let item of myOptions"
+        mat-list-item
+        (click)="close()"
+        [routerLink]="[item.route]"
+        routerLinkActive="list-item-active"
+      >
+        <mat-icon matListIcon> {{ item.icon }} </mat-icon>
+        {{ item.title }}
+      </a>
+
+      <mat-divider></mat-divider>
+    </mat-nav-list>
+    <div class="d-flex justify-content-center pt-5">
+      <div class="centered">
+        <img src="../../assets/help.png" alt="" class="loggo" />
+      </div>
+    </div>
+  </mat-sidenav>
+
+  <mat-sidenav-content>
+    <mat-toolbar *ngIf="showToolbar" color="primary">
+      <mat-toolbar-row>
+        <span>HeLp My ShIt</span>
+        <span class="example-spacer"></span>
+        <button
+          *ngIf="openMode == 'over'"
+          mat-icon-button
+          class="example-icon"
+          aria-label="Example icon-button with menu icon"
+          (click)="sidenav.open()"
+        >
+          <mat-icon>menu</mat-icon>
+        </button>
+      </mat-toolbar-row>
+    </mat-toolbar>
+    <p>Closed due to: {{ reason }}</p>
+  </mat-sidenav-content>
+</mat-sidenav-container>
+<!-- <div *ngIf="user">
+  <h1>ID</h1>
+  <p>{{ user.uid }}</p>
+
+  <h1>EMAIL</h1>
+  <p>{{ user.email }}</p>
+  <button (click)="onLogout()">logout</button>
+</div> -->

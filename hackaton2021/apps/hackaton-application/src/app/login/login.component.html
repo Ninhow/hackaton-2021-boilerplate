@@ -1,0 +1,41 @@
+<div class="container">
+  <div class="row justify-content-center align-items-center big-height">
+    <div class="col-11 col-sm-9 col-md-8 col-lg-7 col-xl-6 align-self-center">
+      <mat-card style="text-align: center">
+        <div>
+          <img src="../../assets/theyer.png" alt="" class="avatar" />
+        </div>
+        <form [formGroup]="loginForm" (ngSubmit)="onLogin()">
+          <div>
+            <mat-form-field appearance="outline" [hideRequiredMarker]="true">
+              <mat-label>Username</mat-label>
+              <input
+                matInput
+                placeholder="Username"
+                [formControlName]="'username'"
+                type="text"
+                required
+                autocomplete="off"
+              />
+              <mat-icon matSuffix>person</mat-icon>
+            </mat-form-field>
+          </div>
+          <div>
+            <mat-form-field appearance="outline" [hideRequiredMarker]="true">
+              <mat-label>Password</mat-label>
+              <input
+                type="password"
+                matInput
+                placeholder="Password"
+                formControlName="password"
+                required
+              />
+              <mat-icon matSuffix>password</mat-icon>
+            </mat-form-field>
+          </div>
+          <button mat-raised-button color="primary">Login</button>
+        </form>
+      </mat-card>
+    </div>
+  </div>
+</div>
