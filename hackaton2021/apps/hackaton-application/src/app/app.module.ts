@@ -7,9 +7,12 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatButtonModule } from '@angular/material/button';
 import { MatButtonToggleModule } from '@angular/material/button-toggle';
+import { FeedComponent } from './feed/feed.component';
+import { MatCardModule } from '@angular/material/card';
+import {MatChipsModule} from '@angular/material/chips';
 
 @NgModule({
-  declarations: [AppComponent],
+  declarations: [AppComponent, FeedComponent],
   imports: [
     BrowserModule,
     BrowserAnimationsModule,
@@ -17,7 +20,9 @@ import { MatButtonToggleModule } from '@angular/material/button-toggle';
     FormsModule,
     MatSidenavModule,
     MatButtonModule,
-    MatButtonToggleModule
+    MatButtonToggleModule,
+    MatCardModule,
+    MatChipsModule
   ],
   providers: [],
   bootstrap: [AppComponent],
