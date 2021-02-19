@@ -1,8 +1,40 @@
-<div *ngIf="user">
+<mat-sidenav-container
+  class="example-container"
+  (backdropClick)="close('backdrop')"
+  style="height: 100vh"
+>
+  <mat-sidenav
+    #sidenav
+    (keydown.escape)="close('escape')"
+    disableClose
+    style="width: 300px"
+  >
+    <p><button mat-button (click)="close('toggle button')">Toggle</button></p>
+  </mat-sidenav>
+
+  <mat-sidenav-content>
+    <mat-toolbar color="primary">
+      <mat-toolbar-row>
+        <span>My App</span>
+        <span class="example-spacer"></span>
+        <button
+          mat-icon-button
+          class="example-icon"
+          aria-label="Example icon-button with menu icon"
+          (click)="sidenav.open()"
+        >
+          <mat-icon>menu</mat-icon>
+        </button>
+      </mat-toolbar-row>
+    </mat-toolbar>
+    <p>Closed due to: {{ reason }}</p>
+  </mat-sidenav-content>
+</mat-sidenav-container>
+<!-- <div *ngIf="user">
   <h1>ID</h1>
   <p>{{ user.uid }}</p>
 
   <h1>EMAIL</h1>
   <p>{{ user.email }}</p>
   <button (click)="onLogout()">logout</button>
-</div>
+</div> -->

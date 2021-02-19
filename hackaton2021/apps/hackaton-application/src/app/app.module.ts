@@ -24,9 +24,10 @@ import {
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { ServiceWorkerModule } from '@angular/service-worker';
 import { environment } from '../environments/environment';
+
 const redirectUnauthorizedToLogin = () => redirectUnauthorizedTo(['login']);
 const redirectLoggedInToDashboard = () => redirectLoggedInTo(['dashboard']);
-
+import { MatToolbarModule } from '@angular/material/toolbar';
 const appRoutes: Routes = [
   {
     path: '',
@@ -61,6 +62,8 @@ const appRoutes: Routes = [
     MatFormFieldModule,
     MatInputModule,
     ReactiveFormsModule,
+    MatToolbarModule,
+
     RouterModule.forRoot(appRoutes),
     AngularFireModule.initializeApp({
       apiKey: 'AIzaSyCtbk8P5t1Yy2mwPYCBFVnghM0Ppa-fZHo',
@@ -73,7 +76,9 @@ const appRoutes: Routes = [
       appId: '1:401410430169:web:1e7bf32be922bc1bba1ac8',
       measurementId: 'G-H7EYLQKXHW',
     }),
-    ServiceWorkerModule.register('ngsw-worker.js', { enabled: environment.production }),
+    ServiceWorkerModule.register('ngsw-worker.js', {
+      enabled: environment.production,
+    }),
   ],
   providers: [],
   bootstrap: [AppComponent],
