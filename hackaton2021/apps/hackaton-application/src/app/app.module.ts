@@ -14,7 +14,7 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { Routes, RouterModule } from '@angular/router';
 import { DashboardComponent } from './login/dashboard/dashboard.component';
-
+import { MatGridListModule } from '@angular/material/grid-list';
 import { AngularFireModule } from '@angular/fire';
 import {
   AngularFireAuthGuard,
@@ -28,6 +28,8 @@ import { environment } from '../environments/environment';
 const redirectUnauthorizedToLogin = () => redirectUnauthorizedTo(['login']);
 const redirectLoggedInToDashboard = () => redirectLoggedInTo(['dashboard']);
 import { MatToolbarModule } from '@angular/material/toolbar';
+import { MatDividerModule } from '@angular/material/divider';
+import { MatListModule } from '@angular/material/list';
 const appRoutes: Routes = [
   {
     path: '',
@@ -50,7 +52,10 @@ const appRoutes: Routes = [
 @NgModule({
   declarations: [AppComponent, LoginComponent, DashboardComponent],
   imports: [
+    MatDividerModule,
     BrowserModule,
+    MatListModule,
+    MatGridListModule,
     BrowserAnimationsModule,
     NgbModule,
     FormsModule,
