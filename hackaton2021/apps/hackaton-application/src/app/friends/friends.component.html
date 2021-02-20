@@ -1,1 +1,31 @@
-<p>friends works!</p>
+<div class='container'>
+  <div class='row'>
+    <div class='col-12 col-sm-12 col-md-6 col-lg-6 col-xl-6 col-xl-6 mt-5' *ngIf='friends'>
+      <mat-card>
+        <mat-card-header>
+          <mat-card-title class='text-center'>Friends</mat-card-title>
+        </mat-card-header>
+        <mat-card-content>
+          <div *ngFor='let f of friends'>
+            <friend-card [f]='f'></friend-card>
+          </div>
+        </mat-card-content>
+      </mat-card>
+
+
+
+    </div>
+    <div class='col-12 col-sm-12 col-md-6 col-lg-6 col-xl-6 col-xl-6 mt-5'>
+      <mat-card>
+        <mat-card-header>
+          <mat-card-title class='text-center'>Recomended</mat-card-title>
+        </mat-card-header>
+        <mat-card-content>
+          <div *ngFor='let f of recomended'>
+            <friend-card [f]='f'></friend-card>
+          </div>
+        </mat-card-content>
+      </mat-card>
+    </div>
+  </div>
+</div>

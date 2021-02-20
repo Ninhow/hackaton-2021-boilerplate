@@ -53,8 +53,8 @@ export class DashboardComponent implements OnInit {
         this.user = value;
       });
     }
-    this.itemService.getItems().subscribe((items) => console.log(items));
-    this.itemService.getById('test2').subscribe((value) => console.log(value));
+    // this.itemService.getItems().subscribe((items) => console.log(items));
+    // this.itemService.getById('test2').subscribe((value) => console.log(value));
   }
 
   onLogout() {

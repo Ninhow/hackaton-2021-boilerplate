@@ -18,7 +18,7 @@ export class FriendService {
     private auth: AuthService,
     private info: UserInfoService
   ) {
-    this.auth.userLoggedIn.subscribe((user) => {
+    this.auth.firebaseAuth.authState.subscribe((user) => {
       this.info
         .getUserInfoSub(user.uid)
         .subscribe((info) => (this.userInfo = info));

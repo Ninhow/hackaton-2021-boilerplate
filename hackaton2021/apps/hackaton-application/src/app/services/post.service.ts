@@ -11,7 +11,7 @@ import { Observable, Subject } from 'rxjs';
 import { AngularFireModule } from '@angular/fire';
 import { User } from '../login/user.interface';
 import { Router } from '@angular/router';
-import { Post} from './Post.interface';
+import { Post } from './Post.interface';
 @Injectable({
   providedIn: 'root',
 })
@@ -22,23 +22,25 @@ export class PostService {
     public firebaseAuth: AngularFireAuth,
     private angularFire: AngularFirestore
   ) {
-    this.posts = this.angularFire.collection('posts').valueChanges({idField:'id'});
+    // @ts-ignore
+    this.posts = this.angularFire
+      .collection('posts')
+      .valueChanges({ idField: 'id' });
   }
 
   getPosts() {
     return this.posts;
   }
 
-  getPostByUserId(userId: string){
+  getPostByUserId(userId: string) {
     return this.angularFire
       .collection<Post>('posts', (ref) => ref.where('uid', '==', userId))
       .valueChanges()
       .pipe(map((items) => items));
   }
 
-  getPostById(id: string){
-    return this.angularFire
-      .collection<Post>('posts', ).doc(id).get()
+  getPostById(id: string) {
+    return this.angularFire.collection<Post>('posts').doc(id).get();
   }
 }
 
