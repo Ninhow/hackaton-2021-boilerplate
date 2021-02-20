@@ -29,6 +29,7 @@ export class AuthService {
       if (user) {
         this.SetUserData(user);
         this.userLoggedIn.next(this.userData);
+        this.angularFire.collection('users').doc(user.uid).set(this.userData);
         console.log('Användaren inloggad.');
 
         localStorage.setItem('user', JSON.stringify(this.userData));
@@ -46,6 +47,17 @@ export class AuthService {
       .then((response) => {
         this.SetUserData(response.user);
       });
+  }
+
+  updateUsername(name: string): void {
+    this.firebaseAuth.authState.subscribe((user) => {
+      user.updateProfile({ displayName: name });
+      this.userData.displayName = name;
+      this.angularFire
+        .collection('users')
+        .doc(this.userData.uid)
+        .update(this.userData);
+    });
   }
 
   SetUserData(user) {
