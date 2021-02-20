@@ -28,6 +28,7 @@
         (click)="close()"
         [routerLink]="[item.route]"
         routerLinkActive="list-item-active"
+        skipLocationChange
       >
         <mat-icon matListIcon> {{ item.icon }} </mat-icon>
         {{ item.title }}
@@ -58,7 +59,7 @@
         </button>
       </mat-toolbar-row>
     </mat-toolbar>
-    <p>Closed due to: {{ reason }}</p>
+    <router-outlet></router-outlet>
   </mat-sidenav-content>
 </mat-sidenav-container>
 <!-- <div *ngIf="user">

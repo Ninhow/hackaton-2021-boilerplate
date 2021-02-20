@@ -1,36 +1,36 @@
 <div id="feedContainer" class="container-fluid">
-  <div *ngFor="let post of posts" class="row postContainer">
+  <div *ngFor="let post of posts" class="row postContainer" routerLink = "path">
     <div class="col-12">
-      <mat-card>
+      <mat-card mat-ripple (click)='goToPost(post.id)'>
         <mat-card-header>
           <div mat-card-avatar class="example-header-image"></div>
           <div class="space-between" style="width:100%">
             <div>
               <mat-card-title>
-                {{ post.postTitle }}  
+                {{ post.title }}
               </mat-card-title>
               <mat-card-subtitle>
 
                 <mat-chip-list>
-                  <mat-chip *ngFor="let postTag of post.postTags">
-                    {{ postTag.name }}
+                  <mat-chip *ngFor="let tag of post.tags">
+                    {{ tag.name }}
                     <mat-icon>
-                      {{ postTag.icon }}
+                      {{ tag.icon }}
                     </mat-icon>
                   </mat-chip>
                 </mat-chip-list>
-                
+
               </mat-card-subtitle>
             </div>
             <div>
               <mat-card-title>
-                {{ post.postUser }}  
+                {{post.username}}
               </mat-card-title>
             </div>
           </div>
         </mat-card-header>
         <mat-card-content>
-          {{ post.postDescription }}
+          {{ post.description }}
         </mat-card-content>
       </mat-card>
     </div>

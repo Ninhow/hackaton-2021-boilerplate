@@ -7,6 +7,7 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatButtonModule } from '@angular/material/button';
 import { LoginComponent } from './login/login.component';
+import { HttpClientModule } from '@angular/common/http';
 
 import { MatIconModule } from '@angular/material/icon';
 import { MatCardModule } from '@angular/material/card';
@@ -16,6 +17,8 @@ import { Routes, RouterModule } from '@angular/router';
 import { DashboardComponent } from './login/dashboard/dashboard.component';
 import { MatGridListModule } from '@angular/material/grid-list';
 import { AngularFireModule } from '@angular/fire';
+
+import { AngularEditorModule } from '@kolkov/angular-editor';
 import {
   AngularFireAuthGuard,
   redirectUnauthorizedTo,
@@ -32,6 +35,13 @@ import { MatListModule } from '@angular/material/list';
 import { MatButtonToggleModule } from '@angular/material/button-toggle';
 import { FeedComponent } from './feed/feed.component';
 import { MatChipsModule } from '@angular/material/chips';
+import { PostComponent } from './posts/post.component';
+import { AnswerComponent } from './posts/answer/answer.component';
+import {CommentComponent} from './posts/answer/comment/comment.component';
+import { EventsComponent } from './events/events.component';
+import { FriendsComponent } from './friends/friends.component';
+import { GroupsComponent } from './groups/groups.component';
+
 const redirectUnauthorizedToLogin = () => redirectUnauthorizedTo(['login']);
 const redirectLoggedInToDashboard = () => redirectLoggedInTo(['dashboard']);
 const appRoutes: Routes = [
@@ -47,16 +57,38 @@ const appRoutes: Routes = [
     data: { authGuardPipe: redirectLoggedInToDashboard },
   },
   {
+    path: 'post/:id',
+    component: PostComponent,
+  },
+  {
     path: 'dashboard',
     component: DashboardComponent,
+    children: [
+      { path: 'feed', component: FeedComponent },
+      { path: 'groups', component: GroupsComponent },
+      { path: 'friends', component: FriendsComponent },
+      { path: 'events', component: EventsComponent },
+    ],
     canActivate: [AngularFireAuthGuard],
     data: { authGuardPipe: redirectUnauthorizedToLogin },
   },
 ];
 
 @NgModule({
-  declarations: [AppComponent, FeedComponent],
+  declarations: [
+    AppComponent,
+    FeedComponent,
+    AnswerComponent,
+    LoginComponent,
+    DashboardComponent,
+    PostComponent,
+    CommentComponent,
+    EventsComponent,
+    FriendsComponent,
+    GroupsComponent,
+  ],
   imports: [
+    HttpClientModule,
     MatDividerModule,
     BrowserModule,
     MatListModule,
@@ -64,6 +96,7 @@ const appRoutes: Routes = [
     BrowserAnimationsModule,
     NgbModule,
     FormsModule,
+    AngularEditorModule,
     MatSidenavModule,
     MatSnackBarModule,
     MatButtonModule,

@@ -2,7 +2,7 @@ import { Component, HostListener, OnInit, ViewChild } from '@angular/core';
 import { MatSidenav } from '@angular/material/sidenav';
 import { Router } from '@angular/router';
 import { AuthService } from '../../services/auth.service';
-import { ItemService } from '../../services/item.service';
+import { UserService } from '../../services/user.service';
 import { User } from '../user.interface';
 
 @Component({
@@ -14,10 +14,10 @@ export class DashboardComponent implements OnInit {
   @ViewChild('sidenav') sidenav: MatSidenav;
 
   myOptions = [
-    { title: 'Grupper', route: '/grupper', icon: 'groups' },
-    { title: 'Feed', route: '/feed', icon: 'feed' },
-    { title: 'Vänner', route: '/friends', icon: 'stars' },
-    { title: 'Evenemang', route: '/evenemang', icon: 'event' },
+    { title: 'Grupper', route: 'groups', icon: 'groups' },
+    { title: 'Feed', route: 'feed', icon: 'feed' },
+    { title: 'Vänner', route: 'friends', icon: 'stars' },
+    { title: 'Evenemang', route: 'events', icon: 'event' },
   ];
 
   innerWidth: number;
@@ -31,7 +31,7 @@ export class DashboardComponent implements OnInit {
   constructor(
     private authService: AuthService,
     private router: Router,
-    private itemService: ItemService
+    private itemService: UserService
   ) {
     this.innerWidth = window.innerWidth;
     if (this.innerWidth < 840) {

@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { AngularFireAuth } from '@angular/fire/auth';
-import { flatMap, map } from 'rxjs/operators';
+import { map } from 'rxjs/operators';
 import {
   AngularFirestore,
   AngularFirestoreCollection,
@@ -11,29 +11,34 @@ import { Observable, Subject } from 'rxjs';
 import { AngularFireModule } from '@angular/fire';
 import { User } from '../login/user.interface';
 import { Router } from '@angular/router';
-
+import { Post} from './Post.interface';
 @Injectable({
   providedIn: 'root',
 })
-export class ItemService {
-  itemsCollection: AngularFirestoreCollection<Item>;
-  items: Observable<Item[]>;
+export class PostService {
+  postsCollection: AngularFirestoreCollection<Post>;
+  posts: Observable<Post[]>;
   constructor(
     public firebaseAuth: AngularFireAuth,
     private angularFire: AngularFirestore
   ) {
-    this.items = this.angularFire.collection('items').valueChanges();
+    this.posts = this.angularFire.collection('posts').valueChanges({idField:'id'});
   }
 
-  getItems() {
-    return this.items;
+  getPosts() {
+    return this.posts;
   }
 
-  getById(userId: string): Observable<Item[]> {
+  getPostByUserId(userId: string){
     return this.angularFire
-      .collection<Item>('items', (ref) => ref.where('uid', '==', userId))
+      .collection<Post>('posts', (ref) => ref.where('uid', '==', userId))
       .valueChanges()
       .pipe(map((items) => items));
+  }
+
+  getPostById(id: string){
+    return this.angularFire
+      .collection<Post>('posts', ).doc(id).get()
   }
 }
 

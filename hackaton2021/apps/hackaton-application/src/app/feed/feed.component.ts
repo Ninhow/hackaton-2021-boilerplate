@@ -1,4 +1,12 @@
 import { Component, OnInit } from '@angular/core';
+import { PostService } from '../services/post.service';
+import { Post } from '../services/Post.interface';
+import { UserInfoService } from '../services/user-info.service';
+import { UserService } from '../services/user.service';
+import firebase from 'firebase';
+import { User } from '../login/user.interface';
+import { Subject } from 'rxjs';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'feed',
@@ -6,36 +14,20 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./feed.component.scss']
 })
 export class FeedComponent implements OnInit {
+  posts: Post[];
+  user: User;
 
-  constructor() { }
+  constructor(private postService: PostService, private userService: UserService, private route: Router) { }
 
   ngOnInit(): void {
+    this.postService.getPosts().subscribe(posts => this.posts = posts);
   }
 
-  posts: any[] = [
-    {
-      "postTitle": "test title 1",
-      "postTags": [{name: "Test tag 1", icon: "person"}, {name: "Test tag 2", icon: "feed"}],
-      "postUser": "test user 1",
-      "postDescription": "BruvKek BruvKek BruvKek BruvKek BruvKek BruvKek BruvKek BruvKek BruvKek"
-    },
-    {
-      "postTitle": "test title 2",
-      "postTags": [{name: "Test tag 1", icon: "person"}, {name: "Test tag 2", icon: "feed"}],
-      "postUser": "test user 2",
-      "postDescription": "Kekbruv Kekbruv Kekbruv Kekbruv Kekbruv Kekbruv Kekbruv Kekbruv Kekbruv"
-    },
-    {
-      "postTitle": "test title 3",
-      "postTags": [{name: "Test tag 1", icon: "person"}, {name: "Test tag 2", icon: "feed"}],
-      "postUser": "test user 3",
-      "postDescription": "Bruv Bruv Bruv Bruv Bruv Bruv Bruv Bruv Bruv Bruv Bruv Bruv Bruv Bruv Bruv"
-    },
-    {
-      "postTitle": "test title 4",
-      "postTags": [{name: "Test tag 1", icon: "person"}, {name: "Test tag 2", icon: "feed"}],
-      "postUser": "test user 4",
-      "postDescription": "Kek Kek Kek Kek Kek Kek Kek Kek Kek Kek Kek Kek Kek Kek Kek Kek Kek Kek Kek"
-    },
-  ];
+  goToPost(postId : string){
+    console.log(postId)
+    this.route.navigate(['/post', postId]);
+  }
 }
+
+
+
