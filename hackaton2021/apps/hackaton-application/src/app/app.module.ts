@@ -18,6 +18,8 @@ import { HttpClientModule } from '@angular/common/http';
 import { CommentComponent } from './post/answer/comment/comment.component';
 import { CommonModule } from '@angular/common';
 import { NewPostComponent } from './post/new-post/new-post.component';
+import { IconPickerModule } from 'ngx-icon-picker';
+import { MatSelectModule } from '@angular/material/select';
 @NgModule({
   declarations: [AppComponent, PostComponent, AnswerComponent, CommentComponent, NewPostComponent],
   imports: [
@@ -34,7 +36,9 @@ import { NewPostComponent } from './post/new-post/new-post.component';
     MatInputModule,
     AngularEditorModule,
     HttpClientModule,
-    CommonModule
+    CommonModule,
+    IconPickerModule,
+    MatSelectModule
     
     
   ],

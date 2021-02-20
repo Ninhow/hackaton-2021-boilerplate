@@ -6,10 +6,20 @@
                     Create new post
                 </mat-card-title>
                 <mat-card-content>
-                    <form [formGroup] = "formdata" (ngSubmit) = "onClickSubmit()">
+                    <form [formGroup] = "newForm" (ngSubmit) = "onClickSubmit()">
                         <angular-editor formControlName="description"></angular-editor>
-                        <div *ngIf="formdata.controls.description.errors && formdata.controls.description.touched" class="error" style="margin-left: 5px;">Description is required (Max 400 - Min 5).</div>
-                        <div class="d-flex justify-content-end">
+                        <div class="d-flex justify-content-end" style="margin-top: 10px;">
+                            <mat-form-field style="margin-right: 10px;">
+                                <mat-label>Type tag name</mat-label>
+                                <input formControlName="name" matInput placeholder="Ex. Math" value="">
+                              </mat-form-field>
+                            <mat-form-field style="margin-right: 10px;">
+                                <mat-select formControlName="icon" placeholder="choose a tag">
+                                    <mat-option *ngFor="let icon of material_icons" [value]="icon">
+                                    <span class="material-icons"> {{ icon }} </span>
+                                    </mat-option>
+                                </mat-select>
+                            </mat-form-field>
                             <button type="submit" class="btn btn-primary">Create</button>
                         </div>
                     </form>
