@@ -22,10 +22,7 @@ export class PostService {
     public firebaseAuth: AngularFireAuth,
     private angularFire: AngularFirestore
   ) {
-    // @ts-ignore
-    this.posts = this.angularFire
-      .collection('posts')
-      .valueChanges({ idField: 'id' });
+    this.posts = this.angularFire.collection<Post>('posts').valueChanges({idField:'id'});
   }
 
   getPosts() {

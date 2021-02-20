@@ -6,7 +6,7 @@ import { UserService } from '../services/user.service';
 import firebase from 'firebase';
 import { User } from '../login/user.interface';
 import { Subject } from 'rxjs';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
   selector: 'feed',
@@ -17,7 +17,7 @@ export class FeedComponent implements OnInit {
   posts: Post[];
   user: User;
 
-  constructor(private postService: PostService, private userService: UserService, private route: Router) { }
+  constructor(private postService: PostService, private userService: UserService, private route: Router, private activatedRoute: ActivatedRoute) { }
 
   ngOnInit(): void {
     this.postService.getPosts().subscribe(posts => this.posts = posts);
@@ -25,7 +25,7 @@ export class FeedComponent implements OnInit {
 
   goToPost(postId : string){
     console.log(postId)
-    this.route.navigate(['/post', postId]);
+    this.route.navigate(['dashboard/post', postId], {skipLocationChange:true});
   }
 }
 
