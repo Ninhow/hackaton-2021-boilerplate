@@ -1,0 +1,27 @@
+.minaEvent {
+  border: 3px solid black;
+  height: 15vh;
+  display: flex;
+  font-size: 20px;
+  font-style: bold;
+  margin-top: 1px;
+  justify-content: center;
+  align-items: center;
+}
+
+mat-card {
+  margin-top: 10px;
+}
+
+img {
+  height: 33vh;
+}
+
+mat-card-actions {
+  display: flex;
+  justify-content: flex-end;
+}
+
+button {
+  background-color: #00d4ff;
+}
