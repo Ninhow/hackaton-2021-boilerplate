@@ -1,1 +1,89 @@
-<p>groups works!</p>
+<div class="container">
+    <div class="row">
+        <div class="col-8">
+            <mat-form-field style="width: 100%; margin-top: 10px;">
+                <mat-label>Search bar</mat-label>
+                <input matInput type="text"/>
+            </mat-form-field>
+        </div>
+        <div class="col-4 text-center">
+            <button mat-raised-button color="primary" style="margin-top: 10px; width: 100%;" (click)="onSearch()">Search</button>
+        </div>
+    </div>
+    <div class="row" style="margin-top: 10px; margin-bottom: 5px;" *ngIf="visible">
+        <div class="col-12">
+            <mat-card style="background-color: rgb(252, 252, 252); border-radius: 5px; box-shadow: 5px 10px 18px black;">
+                <mat-card-header>
+                    <h2>Programmers</h2>
+                </mat-card-header>
+                <mat-card-content style="text-align: center;">
+                    <p>This is a group for people intrested in programing</p> 
+                </mat-card-content>
+                <mat-card-footer class="d-flex justify-content-between">
+                    <mat-chip-list style="padding-left: 10px; padding-bottom: 10px;">
+                        <mat-chip>Math</mat-chip>
+                        <mat-chip>Programing</mat-chip>
+                    </mat-chip-list>
+                    <button mat-raised-button color="primary">Join</button>
+                </mat-card-footer>
+            </mat-card>
+        </div>
+    </div>
+    <div class="row" style="margin-top: 10px; margin-bottom: 5px;" *ngIf="visible">
+        <div class="col-12">
+            <mat-card style="background-color: rgb(252, 252, 252); border-radius: 5px; box-shadow: 5px 10px 18px black;" >
+                <mat-card-header>
+                    <h2>Scienctists</h2>
+                </mat-card-header>
+                <mat-card-content style="text-align: center;">
+                    <p>This is a group for people intrested in science</p> 
+                </mat-card-content>
+                <mat-card-footer class="d-flex justify-content-between">
+                    <mat-chip-list style="padding-left: 10px; padding-bottom: 10px;">
+                        <mat-chip>Science</mat-chip>
+                        <mat-chip>Astronamy</mat-chip>
+                    </mat-chip-list>
+                    <button mat-raised-button color="primary">Join</button>
+                </mat-card-footer>
+            </mat-card>
+        </div>
+    </div>
+    <div class="row" style="margin-top: 10px; margin-bottom: 5px;" *ngIf="visible">
+        <div class="col-12">
+            <mat-card style="background-color: rgb(252, 252, 252); border-radius: 5px; box-shadow: 5px 10px 18px black;" >
+                <mat-card-header>
+                    <h2>Economist</h2>
+                </mat-card-header>
+                <mat-card-content style="text-align: center;">
+                    <p>This is a group for people intrested in economy</p> 
+                </mat-card-content>
+                <mat-card-footer class="d-flex justify-content-between">
+                    <mat-chip-list style="padding-left: 10px; padding-bottom: 10px;">
+                        <mat-chip>Stocks</mat-chip>
+                        <mat-chip>Market</mat-chip>
+                    </mat-chip-list>
+                    <button mat-raised-button color="primary">Join</button>
+                </mat-card-footer>
+            </mat-card>
+        </div>
+    </div>
+    <div class="row" style="margin-top: 10px; margin-bottom: 5px;" *ngIf="visible">
+        <div class="col-12">
+            <mat-card style="background-color: rgb(252, 252, 252); border-radius: 5px; box-shadow: 5px 10px 18px black;" >
+                <mat-card-header>
+                    <h2>Artists</h2>
+                </mat-card-header>
+                <mat-card-content style="text-align: center;">
+                    <p>This is a group for people intrested in art</p> 
+                </mat-card-content>
+                <mat-card-footer class="d-flex justify-content-between">
+                    <mat-chip-list style="padding-left: 10px; padding-bottom: 10px;">
+                        <mat-chip>Art</mat-chip>
+                        <mat-chip>Books</mat-chip>
+                    </mat-chip-list>
+                    <button mat-raised-button color="primary">Join</button>
+                </mat-card-footer>
+            </mat-card>
+        </div>
+    </div>
+</div>
