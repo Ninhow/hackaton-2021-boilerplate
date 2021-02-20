@@ -6,8 +6,8 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatButtonModule } from '@angular/material/button';
-
 import { LoginComponent } from './login/login.component';
+import { HttpClientModule } from '@angular/common/http';
 
 import { MatIconModule } from '@angular/material/icon';
 import { MatCardModule } from '@angular/material/card';
@@ -15,8 +15,10 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { Routes, RouterModule } from '@angular/router';
 import { DashboardComponent } from './login/dashboard/dashboard.component';
-
+import { MatGridListModule } from '@angular/material/grid-list';
 import { AngularFireModule } from '@angular/fire';
+
+import { AngularEditorModule } from '@kolkov/angular-editor';
 import {
   AngularFireAuthGuard,
   redirectUnauthorizedTo,
@@ -26,9 +28,23 @@ import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { ServiceWorkerModule } from '@angular/service-worker';
 import { environment } from '../environments/environment';
 
+import { MatToolbarModule } from '@angular/material/toolbar';
+import { MatDividerModule } from '@angular/material/divider';
+import { MatListModule } from '@angular/material/list';
+
+import { MatButtonToggleModule } from '@angular/material/button-toggle';
+import { FeedComponent } from './feed/feed.component';
+import { MatChipsModule } from '@angular/material/chips';
+import { PostComponent } from './posts/post.component';
+import { AnswerComponent } from './posts/answer/answer.component';
+import {CommentComponent} from './posts/answer/comment/comment.component';
+import { EventsComponent } from './events/events.component';
+import { FriendsComponent } from './friends/friends.component';
+import { GroupsComponent } from './groups/groups.component';
+import { FriendCardComponent } from './friends/friend-card/friend-card.component';
+
 const redirectUnauthorizedToLogin = () => redirectUnauthorizedTo(['login']);
 const redirectLoggedInToDashboard = () => redirectLoggedInTo(['dashboard']);
-import { MatToolbarModule } from '@angular/material/toolbar';
 const appRoutes: Routes = [
   {
     path: '',
@@ -42,19 +58,47 @@ const appRoutes: Routes = [
     data: { authGuardPipe: redirectLoggedInToDashboard },
   },
   {
+    path: 'post/:id',
+    component: PostComponent,
+  },
+  {
     path: 'dashboard',
     component: DashboardComponent,
+    children: [
+      { path: 'feed', component: FeedComponent },
+      { path: 'groups', component: GroupsComponent },
+      { path: 'friends', component: FriendsComponent },
+      { path: 'events', component: EventsComponent },
+    ],
     canActivate: [AngularFireAuthGuard],
     data: { authGuardPipe: redirectUnauthorizedToLogin },
   },
 ];
+
 @NgModule({
-  declarations: [AppComponent, LoginComponent, DashboardComponent],
+  declarations: [
+    AppComponent,
+    FeedComponent,
+    AnswerComponent,
+    LoginComponent,
+    DashboardComponent,
+    PostComponent,
+    CommentComponent,
+    EventsComponent,
+    FriendsComponent,
+    GroupsComponent,
+    FriendCardComponent,
+  ],
   imports: [
+    HttpClientModule,
+    MatDividerModule,
     BrowserModule,
+    MatListModule,
+    MatGridListModule,
     BrowserAnimationsModule,
     NgbModule,
     FormsModule,
+    AngularEditorModule,
     MatSidenavModule,
     MatSnackBarModule,
     MatButtonModule,
@@ -80,6 +124,9 @@ const appRoutes: Routes = [
     ServiceWorkerModule.register('ngsw-worker.js', {
       enabled: environment.production,
     }),
+    MatButtonToggleModule,
+    MatCardModule,
+    MatChipsModule,
   ],
   providers: [],
   bootstrap: [AppComponent],

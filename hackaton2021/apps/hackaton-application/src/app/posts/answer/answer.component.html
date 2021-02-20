@@ -1,0 +1,32 @@
+
+<mat-card>
+  <mat-card-title>
+    This is an anwser
+  </mat-card-title>
+  <mat-card-subtitle>
+    Rating
+  </mat-card-subtitle>
+  <mat-card-content>
+    <p>
+      <span [innerHTML]="answer.text"></span>
+    </p>
+    <comment *ngFor="let comment of comments" [comment]="comment"></comment>
+    <a (click)="collapse.toggle()" [attr.aria-expanded]="!isCollapsed" aria-controls="collapseExample">Comment</a>
+    <div #collapse="ngbCollapse" [(ngbCollapse)]="isCollapsed">
+      <div class="card">
+        <div class="card-body">
+          <form [formGroup]="commentForm" (ngSubmit)="onComment()">
+                    <textarea
+                      matInput
+                      [formControlName]="'comment'"
+                    ></textarea>
+            <div class="d-flex justify-content-end">
+              <button class="btn btn-primary">Comment</button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+    <hr>
+  </mat-card-content>
+</mat-card>

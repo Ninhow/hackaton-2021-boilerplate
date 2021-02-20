@@ -4,7 +4,6 @@ import { UserInfo } from '../login/user.info';
 import { AngularFirestore, QuerySnapshot } from '@angular/fire/firestore';
 import { Observable, Subject } from 'rxjs';
 import firebase from 'firebase';
-import { take } from 'rxjs/operators';
 import { User } from '../login/user.interface';
 
 @Injectable({
@@ -137,6 +136,24 @@ export class UserInfoService {
         console.log(somethinh.data());
         ret.next(somethinh.data().displayName);
       });
+    return ret;
+  }
+
+  getProfileUrl(id: string): Subject<string> {
+    const ret = new Subject<string>();
+
+    this.store
+      .collection<User>('users')
+      .doc(id)
+      .get()
+      .subscribe((user) => {
+        let url = user.data().photoURL;
+        if (!url) {
+          url = 'https://material.angular.io/assets/img/examples/shiba1.jpg';
+        }
+        ret.next(url);
+      });
+
     return ret;
   }
 }

@@ -2,7 +2,17 @@
   height: 100vh;
   padding: 0;
 }
-
+.avatar-nav {
+  height: 100px;
+  width: 100px;
+  border: solid 1px black;
+  border-radius: 100px;
+  margin: 0 auto;
+  margin-bottom: 20px;
+}
+.centered {
+  margin: 0 auto;
+}
 .example-spacer {
   flex: 1 1 auto;
 }
@@ -19,4 +29,34 @@
   left: 0;
   right: 0;
   z-index: 998;
+}
+
+.navWidth {
+  width: 15%;
+}
+
+@media only screen and (max-width: 350px) {
+  .navWidth {
+    width: 60%;
+  }
+}
+
+@media only screen and (min-width: 350px) and (max-width: 768px) {
+  .navWidth {
+    width: 55%;
+  }
+}
+
+.loggo {
+  position: absolute;
+  bottom: 0;
+  height: 125px;
+  width: 125px;
+  position: absolute;
+  margin-left: auto;
+  margin-right: auto;
+  left: 0;
+  right: 0;
+  text-align: center;
+  margin-bottom: 20px;
 }
