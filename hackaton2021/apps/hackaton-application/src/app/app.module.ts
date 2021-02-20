@@ -41,6 +41,7 @@ import {CommentComponent} from './posts/answer/comment/comment.component';
 import { EventsComponent } from './events/events.component';
 import { FriendsComponent } from './friends/friends.component';
 import { GroupsComponent } from './groups/groups.component';
+import { FriendCardComponent } from './friends/friend-card/friend-card.component';
 
 const redirectUnauthorizedToLogin = () => redirectUnauthorizedTo(['login']);
 const redirectLoggedInToDashboard = () => redirectLoggedInTo(['dashboard']);
@@ -66,7 +67,7 @@ const appRoutes: Routes = [
       { path: 'events', component: EventsComponent },
       {
         path: 'post/:id',
-        component: PostComponent
+        component: PostComponent,
       },
     ],
     canActivate: [AngularFireAuthGuard],
@@ -86,6 +87,7 @@ const appRoutes: Routes = [
     EventsComponent,
     FriendsComponent,
     GroupsComponent,
+    FriendCardComponent,
   ],
   imports: [
     HttpClientModule,
