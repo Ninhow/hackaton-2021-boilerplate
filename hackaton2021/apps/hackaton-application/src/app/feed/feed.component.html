@@ -1,7 +1,7 @@
 <div id="feedContainer" class="container-fluid">
-  <div *ngFor="let post of posts" class="row postContainer" routerLink = "path">
+  <div *ngFor="let post of posts" class="row postContainer pt-3" routerLink = "path" style='cursor: pointer; user-select: none; outline: 0'>
     <div class="col-12">
-      <mat-card mat-ripple (click)='goToPost(post.id)'>
+      <mat-card mat-ripple (click)='goToPost(post.id)' style='cursor: pointer; user-select: none'>
         <mat-card-header>
           <div mat-card-avatar class="example-header-image"></div>
           <div class="space-between" style="width:100%">

@@ -22,7 +22,7 @@ export class PostComponent implements OnInit {
       this.formdata.get('description').markAsTouched();
     } else {
       console.log(this.formdata.value)
-      this.post.answers.push(this.formdata.value)
+      this.post.answers.push({text: this.formdata.value, username: "null", username: "null", uid: "asfas"})
     }
   }
 

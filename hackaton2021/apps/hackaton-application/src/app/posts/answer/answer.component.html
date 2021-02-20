@@ -1,17 +1,21 @@
 
 <mat-card>
   <mat-card-title>
-    This is an anwser
+    Answer
   </mat-card-title>
   <mat-card-subtitle>
-    Rating
+    <div style='padding-left: 10px; padding-top: 4px; text-align: right'>
+      <span style='cursor: pointer; user-select: none'><mat-icon>thumbs_up_down</mat-icon> {{reputationCount}}</span>
+      <span style='padding-left: 10px; cursor: pointer; user-select: none' (click)='addReputation()'><mat-icon>thumb_up</mat-icon> Like</span>
+      <span style='padding-left: 10px; cursor: pointer; user-select: none' (click)='removeReputation()'><mat-icon>thumb_down</mat-icon> Dislike</span>
+    </div>
   </mat-card-subtitle>
   <mat-card-content>
-    <p>
-      <span [innerHTML]="answer.text"></span>
+    <p style='background-color: #f0f5f5; border-radius: 5px'>
+      <span [innerHTML]="answer.comment"></span>
     </p>
     <comment *ngFor="let comment of comments" [comment]="comment"></comment>
-    <a (click)="collapse.toggle()" [attr.aria-expanded]="!isCollapsed" aria-controls="collapseExample">Comment</a>
+    <a (click)="collapse.toggle()" [attr.aria-expanded]="!isCollapsed" style='cursor: pointer' aria-controls="collapseExample">Comment</a>
     <div #collapse="ngbCollapse" [(ngbCollapse)]="isCollapsed">
       <div class="card">
         <div class="card-body">
@@ -21,7 +25,7 @@
                       [formControlName]="'comment'"
                     ></textarea>
             <div class="d-flex justify-content-end">
-              <button class="btn btn-primary">Comment</button>
+              <button style='cursor: pointer' class="btn btn-primary">Comment</button>
             </div>
           </form>
         </div>

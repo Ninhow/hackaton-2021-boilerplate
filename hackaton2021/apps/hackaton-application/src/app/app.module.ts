@@ -57,10 +57,6 @@ const appRoutes: Routes = [
     data: { authGuardPipe: redirectLoggedInToDashboard },
   },
   {
-    path: 'post/:id',
-    component: PostComponent,
-  },
-  {
     path: 'dashboard',
     component: DashboardComponent,
     children: [
@@ -68,6 +64,10 @@ const appRoutes: Routes = [
       { path: 'groups', component: GroupsComponent },
       { path: 'friends', component: FriendsComponent },
       { path: 'events', component: EventsComponent },
+      {
+        path: 'post/:id',
+        component: PostComponent
+      },
     ],
     canActivate: [AngularFireAuthGuard],
     data: { authGuardPipe: redirectUnauthorizedToLogin },

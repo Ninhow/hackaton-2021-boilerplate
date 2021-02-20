@@ -22,7 +22,7 @@ export class UserService {
     public firebaseAuth: AngularFireAuth,
     private angularFire: AngularFirestore
   ) {
-    this.items = this.angularFire.collection('users').valueChanges();
+    this.items = this.angularFire.collection<User>('users').valueChanges();
   }
 
   getItems() {
