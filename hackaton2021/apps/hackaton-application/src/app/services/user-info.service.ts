@@ -4,7 +4,7 @@ import { UserInfo } from '../login/user.info';
 import { AngularFirestore, QuerySnapshot } from '@angular/fire/firestore';
 import { Observable, Subject } from 'rxjs';
 import firebase from 'firebase';
-import { map, take } from 'rxjs/operators';
+import { User } from '../login/user.interface';
 
 @Injectable({
   providedIn: 'root',
@@ -43,20 +43,33 @@ export class UserInfoService {
       .collection<UserInfo>('userInfo', (ref) =>
         ref.where('userId', '==', this.auth.userData.uid)
       )
-      .get()
-      .pipe(take(1));
+      .get();
   }
 
   addFriend(friendID: string, uid: string): void {
-    this.getUserInfo(uid).subscribe((resp) => {
-      if (resp.empty) {
-        alert('No user info in database');
-      } else {
-        const info = this.constructUserData(resp);
-        info.friends.push(friendID);
-        this.store.collection('userInfo').doc(info.id).update(info);
-      }
-    });
+    this.store
+      .collection('userInfo')
+      .get()
+      .subscribe((resp) => {
+        const users = resp.docs
+          .map((resp) => {
+            const user = resp.data() as UserInfo;
+            user.id = resp.id;
+            return user;
+          })
+          .filter((value) => {
+            return value.userId === friendID || value.userId === uid;
+          });
+        users.forEach((val) => {
+          if (friendID == val.userId) {
+            val.friends.push(uid);
+            this.store.collection('userInfo').doc(val.id).update(val);
+          } else {
+            val.friends.push(friendID);
+            this.store.collection('userInfo').doc(val.id).update(val);
+          }
+        });
+      });
   }
 
   addTagg(taggId: string, uid: string): void {
@@ -113,4 +126,34 @@ export class UserInfoService {
     });
   }
 
+  getUsernameById(id: string): Subject<string> {
+    const ret = new Subject<string>();
+    this.store
+      .collection<User>('users')
+      .doc(id)
+      .get()
+      .subscribe((somethinh) => {
+        console.log(somethinh.data());
+        ret.next(somethinh.data().displayName);
+      });
+    return ret;
+  }
+
+  getProfileUrl(id: string): Subject<string> {
+    const ret = new Subject<string>();
+
+    this.store
+      .collection<User>('users')
+      .doc(id)
+      .get()
+      .subscribe((user) => {
+        let url = user.data().photoURL;
+        if (!url) {
+          url = 'https://material.angular.io/assets/img/examples/shiba1.jpg';
+        }
+        ret.next(url);
+      });
+
+    return ret;
+  }
 }

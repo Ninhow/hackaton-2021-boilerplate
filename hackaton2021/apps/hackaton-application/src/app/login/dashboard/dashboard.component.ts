@@ -49,10 +49,12 @@ export class DashboardComponent implements OnInit {
   ngOnInit(): void {
     this.innerWidth = window.innerWidth;
     if (!(this.user = this.authService.GetUser())) {
-      this.authService.userLoggedIn.subscribe((value) => (this.user = value));
+      this.authService.userLoggedIn.subscribe((value) => {
+        this.user = value;
+      });
     }
-    this.itemService.getItems().subscribe((items) => console.log(items));
-    this.itemService.getById('test2').subscribe((value) => console.log(value));
+    // this.itemService.getItems().subscribe((items) => console.log(items));
+    // this.itemService.getById('test2').subscribe((value) => console.log(value));
   }
 
   onLogout() {
